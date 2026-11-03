@@ -1,184 +1,515 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* ========================================
+   1. GLOBAL STYLES
+======================================== */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+* {
+  box-sizing: border-box;
 }
 
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: Inter, system-ui, sans-serif;
+  background: #f5f6fa;
+  color: #000000;
 }
 
-#center {
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+
+/* ========================================
+   2. HEADER
+======================================== */
+
+.header {
+  margin-bottom: 30px;
+}
+
+.eyebrow {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 8px 0;
+  font-size: 40px;
+}
+
+.subtitle {
+  color: #4b4b4d;
+}
+
+
+/* ========================================
+   3. TASK INPUT FORM
+======================================== */
+
+.task-input {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+  margin-bottom: 30px;
+  border-radius: 9px;
+}
+
+.task-input input,
+.task-input select {
+  flex: 1;
+  min-width: 0;
+  padding: 13px 16px;
+  border: 1px solid #ffffff;
+  border-radius: 9px;
+  font-size: 15px;
+  background: #aaa6fa;
+  color: #3d3d3e;
+}
+
+/* ========================================
+   4. BUTTONS
+======================================== */
+
+button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 9px;
+  background: #0400ff;
+  color: white;
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .7;
+}
+
+.drag-handle {
+  top: 12px;
+  right: 12px;
+  padding: 2px 8px;
+  background: #e1e3e6;
+  cursor: grab;
+  flex-shrink: 0;
+  font-size: 20px;
+  color: #9c9fed;
+  margin-left:auto;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  opacity: .7;
+}
+
+
+/* ========================================
+   5. DASHBOARD STATISTICS
+======================================== */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+  
+}
+
+.stat-card {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #e5e7ef;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 2px 6px #20243808;
+  text-align: center;
+}
+
+.stat-card p {
+  margin: 0 0 12px;
+  color: #777f98;
+  font-size: 13px;
+  text-align: center;
+  
+}
+
+.stat-card h2 {
+  margin: 0;
+  color: #9f9f9f;
+  font-size: 28px;
+  text-align: center;
+  
+}
+
+
+/* ========================================
+   6. PRIORITY STATISTICS
+======================================== */
+
+.priority-stats {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 12px;
+  padding: 4px 6px;
+  font-weight: 500;
+  text-align: center;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+.high-text,
+.normal-text,
+.low-text {
+  width: 100px;
+  border-radius: 20px;
+  text-align: center;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.high-text {
+  background: #f0d8d8;
+  color: #b51a1a;
+  font-size: 14px;
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+.normal-text {
+  background: #d2d6e4;
+  color: #526186;
+  font-size: 13px;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.low-text {
+  background: #c5f4d5;
+  color: #287747;
+  font-size: 12px;
 }
 
-.ticks {
-  position: relative;
+
+/* ========================================
+   7. KANBAN BOARD
+======================================== */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
   width: 100%;
+  max-width: 100%;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+.column {
+  min-height: 300px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #999999;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.column-header h2 {
+  font-size: 20px;
+}
+
+.task-count {
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: white;
+  color: #000000;
+  font-size: 12px;
+}
+
+.column-over {
+  background: #dfe2f3;
+  outline: 2px dashed #5755d9;
+  outline-offset: -3px;
+}
+
+
+/* ========================================
+   8. TASK LIST
+======================================== */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+.empty-message {
+  color: #000000;
+  font-size: 13px;
+  text-align: center;
+}
+
+
+/* ========================================
+   9. TASK CARDS
+======================================== */
+
+.task-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 260px;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.task-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 12px;
+  font-size: 20px;
+  overflow-wrap: anywhere;
+}
+
+.task-card h3 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 20px;
+  overflow-wrap: anywhere;
+  align-items: center;
+}
+
+.task-card h3::first-letter {
+  text-transform: uppercase;
+}
+
+.task-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  width: 100%;
+  gap: 10px;
+}
+
+.task-card-content h3 {
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+
+/* ========================================
+   10. TASK DESCRIPTION
+======================================== */
+
+.task-description {
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 8px 0 16px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.task-description::first-letter {
+  text-transform: uppercase;
+}
+
+
+/* ========================================
+   11. TASK PRIORITY
+======================================== */
+
+.priority {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.priority-select {
+  display: block;
+  width: fit-content;
+  margin: 12px 0;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.priority-low {
+  background: #c5f4d5;
+  color: #287747;
+}
+
+.priority-normal {
+  background: #d2d6e4;
+  color: #526186;
+}
+
+.priority-high {
+  background: #f0d8d8;
+  color: #b51a1a;
+}
+
+/* ========================================
+   12. STATUS DROP-DOWN
+======================================== */
+
+.status-select {
+  background-color: #595a5c;
+  color: #ffffff;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 15px;
+}
+
+
+/* ========================================
+   13.  DUE DATE AND USER ID
+======================================== */
+
+.due-date {
+  margin-top: 10px;
+  color: #393939;
+  font-size: 12px;
+}
+
+.due-date-indicator {
+  display: inline-block;
+  padding: 4px 9px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.due-date-indicator.overdue {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.due-date-indicator.due-soon {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.due-date-indicator.on-track {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+
+
+.user-id {
+  margin-top: 10px;
+  color: #393939;
+  font-size: 12px;
+  
+}
+
+.task-user_id {
+  width: 100%;
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  color: #888;
+  font-size: 9px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+
+/* ========================================
+   13. TASK CARD CONTROLS
+======================================== */
+
+.task-card select {
+  max-width: 100%;
+}
+
+.task-card .delete-button {
+  align-self: center;
+  background: #e80707;
+}
+
+.task-card.overdue {
+  border-left: 4px solid #dc2626;
+}
+
+.task-card.due-soon {
+  border-left: 4px solid #d97706;
+}
+
+/* ========================================
+   14. ERROR AND LOADING MESSAGES
+======================================== */
+
+.error {
+  color: #c33d48;
+}
+
+.loading {
+  padding: 40px;
+}
+
+
+/* ========================================
+   15. RESPONSIVE DESIGN
+======================================== */
+
+/* Medium screens */
+@media (max-width: 1000px) {
+  .board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .dashboard-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+}
+
+/* Small screens */
+@media (max-width: 600px) {
+  .app {
+    padding: 20px;
+  }
+
+  .board {
+    grid-template-columns: 1fr;
+  }
+
+  .task-input {
+    flex-direction: column;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
   }
 }
